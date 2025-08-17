@@ -9,13 +9,17 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            export DEBIAN_FRONTEND=noninteractive
+
+            ln -fs /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+            dpkg-reconfigure --frontend noninteractive tzdata
+
             apt update
             apt install -y software-properties-common wget build-essential git \
               cmake clang g++ pkg-config libx11-dev libxrandr-dev libxinerama-dev \
-              libxcursor-dev libgl1-mesa-dev libudev-dev libfreetype6-dev
+              libxcursor-dev libgl1-mesa-dev libudev-dev libfreetype6-dev unzip
 
             wget https://www.sfml-dev.org/files/SFML-2.6.1-sources.zip
-            apt install -y unzip
             unzip SFML-2.6.1-sources.zip
             mkdir -p SFML-2.6.1/build
             cd SFML-2.6.1/build
