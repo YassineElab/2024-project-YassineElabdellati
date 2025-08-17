@@ -1,0 +1,40 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: ubuntu:24.04
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            apt update
+            apt install -y software-properties-common wget build-essential git \
+              cmake clang g++ pkg-config libx11-dev libxrandr-dev libxinerama-dev \
+              libxcursor-dev libgl1-mesa-dev libudev-dev libfreetype6-dev
+
+            wget https://www.sfml-dev.org/files/SFML-2.6.1-sources.zip
+            apt install -y unzip
+            unzip SFML-2.6.1-sources.zip
+            mkdir -p SFML-2.6.1/build
+            cd SFML-2.6.1/build
+            cmake ..
+            make -j$(nproc)
+            make install
+      - run:
+          name: Configure project
+          command: |
+            mkdir -p build
+            cd build
+            cmake ..
+      - run:
+          name: Build project
+          command: |
+            cd build
+            make -j$(nproc)
+      - run:
+          name: Run executable
+          command: |
+            cd build
+            ./doodleAP
