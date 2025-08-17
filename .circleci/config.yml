@@ -7,25 +7,10 @@ jobs:
       - image: ubuntu:24.04
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            export DEBIAN_FRONTEND=noninteractive
-            apt update
-            apt install -y gcc g++ libsfml-dev cmake git xvfb pkg-config
-      - run:
-          name: Configure project
-          command: |
-            mkdir -p build
-            cd build
-            cmake ..
-      - run:
-          name: Build project
-          command: |
-            cd build
-            make -j$(nproc)
-      - run:
-          name: Run executable headlessly
-          command: |
-            cd build
-            CI=1 xvfb-run -a ./doodleAP
+      - run: apt update
+      - run: DEBIAN_FRONTEND=noninteractive apt install -y gcc g++ libsfml-dev cmake git
+      - run: mkdir -p build
+      - run: cd build && cmake ..
+      - run: cd build && make -j$(nproc)
+      - run: cd build && make install
+      - run: cd build && make doc
