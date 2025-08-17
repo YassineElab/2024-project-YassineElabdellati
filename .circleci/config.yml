@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   build:
+    resource_class: small
     docker:
       - image: ubuntu:24.04
-    resource_class: small
     steps:
       - checkout
       - run:
@@ -12,7 +12,7 @@ jobs:
           command: |
             export DEBIAN_FRONTEND=noninteractive
             apt update
-            apt install -y gcc g++ cmake git libsfml-dev xvfb pkg-config
+            apt install -y gcc g++ libsfml-dev cmake git xvfb pkg-config
       - run:
           name: Configure project
           command: |
