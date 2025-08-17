@@ -12,5 +12,3 @@ jobs:
       - run: mkdir -p build
       - run: cd build && cmake ..
       - run: cd build && make -j$(nproc)
-      - run: cd build && make install
-      - run: cd build && make doc
