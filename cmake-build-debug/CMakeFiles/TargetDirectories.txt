@@ -1,0 +1,3 @@
+C:/Users/Yassine/CLionProjects/2024-project-YassineElabdellati/doodleAP/cmake-build-debug/CMakeFiles/doodleAP.dir
+C:/Users/Yassine/CLionProjects/2024-project-YassineElabdellati/doodleAP/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Yassine/CLionProjects/2024-project-YassineElabdellati/doodleAP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
